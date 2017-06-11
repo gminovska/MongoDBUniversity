@@ -18,10 +18,11 @@ The first argument is an array of docs we want inserted. If we do not specify a 
 To see all the docs in a collection nicely formatted: `db.moviesScratch.find().pretty()`
 <hr/>
 
-### Equlity matches on scalar values and embedded documents
+### Equality matches on scalar values and embedded documents
 The first argument to the find({"year": "1976"}) is called **query document** 
 
 For nested(embedded) documents we use the dot notation: `db.movieDetails.find({"tomato.meter": 100})`. When we use the dot notation, the keys **have to** have quotes. For regular keys,the quotes are not necessary in some clients such as the shell. So would work: `db.movieDetails.find({rated: "PG-13"})` just as `db.movieDetails.find({"rated": "PG-13"})`
+
 ### Equality matches on arrays
 
 * On the entire array
@@ -32,7 +33,7 @@ We just omit the [] brackets: `db.movieDetails.find("actors": "Jeff Bridges")`. 
 If we are interested in result appearing in a specific position in the array, we use the index with a dot notation:
 `db.movieDetails.find("actors.0": "Jeff Bridges")`
 This will return the documents where this actor is the first in the array of actors.
-* More complex matches using operators 
+* More complex matches using operators (discussed in another lesson)
 
 ### Cursors
 The find() function returns a cursor. If we don't assign the query result to a variable, mongo shell automatically iterates through the cursor up to 20 times to print an initial set of results. In general, mongoDB returns the result in baches. The first batch has 101 document, or just enough docs to exceed 1MB. Subsequent baches will be 4MB. We iterate through baches by typing `it` in the shell.
